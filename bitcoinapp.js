@@ -187,7 +187,7 @@ function BitcoinApp() {
 		this.bitcoin.abortAll();
 
 		this.connected = false;
-		this.setTitle("Bitcoin (not connected)");
+		this.setTitle("not connected");
 
 		$('#addressBox').hide();
 		$('#serverInfo').hide();
@@ -283,9 +283,9 @@ function BitcoinApp() {
 				$('#address').text(address);
 		}
 
-		if (this.settings.labelsmode) 
-			this.bitcoin.getAddressByAccount(next.proxy(this), "");
-		else
+		//if (this.settings.labelsmode) 
+		//	this.bitcoin.getAddressByAccount(next.proxy(this), "");
+		//else
 			this.bitcoin.getAddress(next.proxy(this));
 	}
 
@@ -314,7 +314,7 @@ function BitcoinApp() {
 
 				this.sendbtc.reset();
 
-				var sNetwork = "Bitcoin";
+				var sNetwork = info.whoami;
 
 				if(info.testnet)
 					sNetwork = "Testnet";
@@ -343,11 +343,11 @@ function BitcoinApp() {
 				keys.push(i);
 			}
 
-			if (!this.settings.labelsmode) {
-				this.selectAccount(keys[0]);
-			} else {
+			//if (!this.settings.labelsmode) {
+			//	this.selectAccount(keys[0]);
+			//} else {
 				this.selectAccount("*");
-			}
+			//}
 
 			finish.proxy(this)(request);
 		}
@@ -404,7 +404,7 @@ function BitcoinApp() {
 		Number.prototype.formatBTC = function(addSign) {
 			var s = this.toFixed(8).replace(/(\.[0-9]{2})0+$/, '$1');
 
-			s = s + " BTC";
+			s = s + " TIPS";
 
 			if(addSign && this > 0)
 				s = "+" + s;
@@ -551,7 +551,7 @@ function BitcoinApp() {
 					settings.url = getFormValue(this, "url");
 					settings.user = getFormValue(this, "user");
 					settings.password = getFormValue(this, "pass");
-					app.settings.labelsmode = getFormValue(this, "labelsmode");
+					//app.settings.labelsmode = getFormValue(this, "labelsmode");
 					app.connect(settings);
 					return false;
 				});

@@ -60,7 +60,7 @@ function TXList(list, app, settings) {
 
 		var start = new Date().getTime();
 
-		if (!app.settings.labelsmode) 
+		//if (!app.settings.labelsmode) 
 			transactions = jQuery.grep(transactions, function(n, i) {
 						return n.account == app.bitcoin.settings.account;
 					});
@@ -221,8 +221,8 @@ function TXList(list, app, settings) {
 				if (tx.from)
 					extra = " (" + tx.from + ")";
 
-				if (app.settings.labelsmode) 
-					extra = " (" + tx.account + ")";
+				//if (app.settings.labelsmode) 
+				//	extra = " (" + tx.account + ")";
 
 				html += "<label>Received on:</label> " + tx.address + extra + "<br/>";
 				break;
@@ -255,9 +255,9 @@ function TXList(list, app, settings) {
 				info = tx.address;
 
 		if (tx.category == 'receive')
-			if (app.settings.labelsmode && tx.account) 
-				info = tx.account;
-			else if (tx.from)
+			//if (app.settings.labelsmode && tx.account) 
+			//	info = tx.account;
+			if (tx.from)
 				info = tx.from;
 			else
 				info = tx.address;

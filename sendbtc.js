@@ -20,7 +20,7 @@ function SendBTC(box, app) {
 		obj = setFormValue($('form#sendBTC'), "amount", "");
 		hideValidation(obj);
 
-		this.showResult("Bitcoins sent", true, context);
+		this.showResult("Coins sent", true, context);
 		app.refreshAll();
 	}
 
@@ -115,15 +115,15 @@ function SendBTC(box, app) {
 		var div = this.div(true);
 		div.append('<p class="center">Sending...</p>');
 
-		if (app.settings.labelsmode) {
-			if(context.passphrase) {
-				app.bitcoin.sendBTCToAddressWithPassphrase(this.sendCallback.proxy(this), context, rawcontext);
-			} else {
-			    app.bitcoin.sendBTCToAddress(this.sendCallback.proxy(this), context, rawcontext);
-			}
-		} else {
+		//if (app.settings.labelsmode) {
+		//	if(context.passphrase) {
+		//		app.bitcoin.sendBTCToAddressWithPassphrase(this.sendCallback.proxy(this), context, rawcontext);
+		//	} else {
+		//	    app.bitcoin.sendBTCToAddress(this.sendCallback.proxy(this), context, rawcontext);
+		//	}
+		//} else {
 			app.bitcoin.sendBTC(this.sendCallback.proxy(this), context, rawcontext);
-		}
+		//}
 	}
 
 	this.onValidateAddressField = function(result, error, field) {

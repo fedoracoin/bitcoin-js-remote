@@ -61,13 +61,13 @@ function AccountList(obj, app) {
 		for (var account in accounts) {
 			var balance = accounts[account];
 
-			if (app.settings.labelsmode) {
-				sum += balance;
+			//if (app.settings.labelsmode) {
+			//	sum += balance;
 
-				if (account == "")
-					continue;
+			//	if (account == "")
+			//		continue;
 
-			} else if (account == app.account()) {
+			if (account == app.account()) {
 				app.setBalance(balance);
 				$('#currentAccount').text(account.prettyAccount());
 			}
@@ -80,18 +80,13 @@ function AccountList(obj, app) {
 			if (row.length == 0) {
 				row = $('<tr></tr>');
 
-				if (!app.settings.labelsmode) {
 					var html = '<td class="left">' + account.prettyAccount() + '</td>';
 						html += '<td></td>';
-				} else {
-					var html = '<td/>'
-				}
 
 				row.append(html);
 
 				row.attr('name', account);
 
-				if (!app.settings.labelsmode) 
 					row.click( function() {
 							app.selectAccount($(this).attr('name'));
 							});
@@ -99,23 +94,15 @@ function AccountList(obj, app) {
 				this.list.append(row);
 			}
 
-			if (!app.settings.labelsmode) 
 				this.updateRow(row, balance, timestamp);
-			else
-				this.updateRowLabels(row, account, timestamp);
 		}
 		
-		if (app.settings.labelsmode) {
-			app.setBalance(sum);
-			$('#currentAccount').text("Balance");
-		}
 
 		this.list.children().not('[update="' + timestamp + '"]').remove();
 	}
 
 	this.refresh = function() {
 		if (!this.list) {
-			if (!app.settings.labelsmode) 
 				this.container.append('<thead><tr><th class="left">Account</th><th class="right">Balance</th></tr></thead>');
 
 			this.list = jQuery('<tbody/>');
